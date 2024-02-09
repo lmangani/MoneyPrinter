@@ -116,6 +116,9 @@
     </footer>
 
     <script>
+      let domain = window.location.protocol + "//" + window.location.hostname;
+      let port = 8080;
+      
       const videoSubject = document.querySelector("#videoSubject");
       const voice = document.querySelector("#voice");
       const generateButton = document.querySelector("#generateButton");
@@ -124,7 +127,7 @@
       const cancelGeneration = () => {
         console.log("Canceling generation...");
         // Send request to /cancel
-        fetch("http://localhost:8080/api/cancel", {
+        fetch(`${domain}:${port}/api/cancel`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -164,7 +167,7 @@
         // Get value from toggle: automated youtube upload
         const youtubeUpload = document.querySelector("#youtubeUploadToggle").checked;
 
-        const url = "http://localhost:8080/api/generate";
+        const url = `${domain}:${port}/api/generate`;
 
         // Construct data to be sent to the server
         const data = {
